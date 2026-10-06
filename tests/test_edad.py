@@ -1,5 +1,6 @@
 from datetime import date
 from src.edad import calcular_edad
+import pytest
 
 def test_edad_cuando_ya_cumplio_anios_este_anio():
     nacimiento = date(2000, 5, 15)
@@ -15,3 +16,10 @@ def test_edad_al_nacer_es_cero():
     nacimiento = date(2026, 10, 5)
     hoy = date(2026, 10, 5)
     assert calcular_edad(nacimiento, hoy) == 0
+
+def test_nacimiento_en_el_futuro_lanza_excepcion():
+    nacimiento = date(2030, 1, 1)
+    hoy = date(2026, 10, 5)
+    with pytest.raises(ValueError) as ex:
+        calcular_edad(nacimiento, hoy)
+    assert str(ex.value) == "La fecha de nacimiento no puede ser en el futuro"
