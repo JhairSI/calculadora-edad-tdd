@@ -10,3 +10,8 @@ def test_edad_cuando_aun_no_cumple_anios_este_anio():
     nacimiento = date(2000, 11, 20)
     hoy = date(2026, 9, 30)
     assert calcular_edad(nacimiento, hoy) == 25
+
+def test_edad_al_nacer_es_cero():
+    nacimiento = date(2026, 10, 5)
+    hoy = date(2026, 10, 5)
+    assert calcular_edad(nacimiento, hoy) == 0
